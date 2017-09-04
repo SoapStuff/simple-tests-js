@@ -7,35 +7,65 @@ const results = {
 module.exports.getResults = function() {
     return results;
 };
+/**
+ * Execute the tests
+ * @param tests
+ * @param file
+ */
 module.exports.run = function (tests,file) {
-    //TODO Better way to remove the double slashes? Also check if this is a problem everywhere.
-
     var passed = 0;
     var failed = 0;
     var failedTests = [];
 
     for (var k in tests) {
-        if (tests.hasOwnProperty(k))
+        if (tests.hasOwnProperty(k)) {
+            // Run the test
             if (typeof tests[k] === "function") {
                 try {
                     tests[k]();
-                    passed++;
-                    results.passed++;
+                    succeed()
                 } catch (error) {
-                    var testResult = {
-                        file: file,
-                        test: k,
-                        message: error.toString(),
-                        stack: error.stack
-                    };
-                    failedTests.push(testResult);
-                    results.failedTests.push(testResult);
-                    failed++;
-                    results.failed++;
+                    fail(error,error.toString());
                 }
             }
+            // Run parametrized test
+            if (typeof tests[k] === "object") {
+                if (tests[k].parameters && tests[k].test) {
+                    for(var i = 0; i < tests[k].parameters.length; i++) {
+                        try {
+                            tests[k].test(tests[k].parameters[i]);
+                            succeed()
+                        }
+                        catch (error) {
+                            fail(error,"Test Failed with parameters:"+JSON.stringify(tests[k].parameters[i]) + " " + error.toString());
+                        }
+                    }
+                } else {
+                    throw new Error("A parametrized test should be in the format: {test: (function), parameters: (Array(Array(parameters))");
+                }
+            }
+        }
     }
     printResults(passed,failed,failedTests,file);
+
+    //Inner function
+    function fail(error,message) {
+        var testResult = {
+            file: file,
+            test: k,
+            message: message,
+            stack: error.stack
+        };
+        failedTests.push(testResult);
+        results.failedTests.push(testResult);
+        failed++;
+        results.failed++;
+    }
+
+    function succeed(){
+        passed++;
+        results.passed++;
+    }
 };
 
 function printResults(passed,failed,failedTests,file) {
