@@ -1,10 +1,6 @@
 var passed = 0;
 var failed = 0;
 var failedTests = [];
-
-module.exports.getResults = function() {
-    return results;
-};
 /**
  * Execute the tests and logs the results.
  * @param tests - An object with al the tests.
@@ -135,7 +131,7 @@ TestRunner.prototype.printResults = function() {
     for(var i = 0; i < this.failedTests.length; i++) {
         console.log(" Test: " + this.failedTests[i].test);
         console.log(" Message: " + this.failedTests[i].message);
-        console.log(" Stack trace: " + this.failedTests[i].stack +"\n");
+        console.log(" Stack trace: " + this.failedTests[i].stack + "\n");
     }
     // I just want things to look pretty :)
     console.log(string.replace(/\D/g,"=").replace(/\d/g,"=") +"\n");
