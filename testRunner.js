@@ -83,7 +83,7 @@ TestRunner.prototype.executeParamTest = function(test,testName) {
     if (test.parameters && test.test) {
         for(var i = 0; i < test.parameters.length; i++) {
             try {
-                test.test(test.parameters[i]);
+                test.test.apply(null,test.parameters[i]);
                 this.succeedTest()
             }
             catch (error) {
