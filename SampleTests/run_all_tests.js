@@ -1,0 +1,1 @@
+require("../simple-test").runTests("/SampleTests");

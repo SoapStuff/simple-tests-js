@@ -83,15 +83,13 @@ TestRunner.prototype.executeParamTest = function(test,testName) {
     if (test.parameters && test.test) {
         for(var i = 0; i < test.parameters.length; i++) {
             try {
-                test.test.apply(null,test.parameters[i]);
+                test.test.apply(null, test.parameters[i]);
                 this.succeedTest()
             }
             catch (error) {
-                this.failTest(error,"Test Failed with parameters:"+JSON.stringify(test.parameters[i]) + " " + error.toString(),testName);
+                this.failTest(error, "Test Failed with parameters:" + JSON.stringify(test.parameters[i]).cyan + " " + error.toString(), testName);
             }
         }
-    } else {
-        console.log("Failed test " + testName + "because of invalid format.");
     }
 };
 /**
@@ -123,16 +121,16 @@ TestRunner.prototype.succeedTest = function() {
  * Prints the results of all the tests.
  */
 TestRunner.prototype.printResults = function() {
-    var string = "======== " + this.file + " ========";
+    var string = "======== ".yellow + this.file.underline.white + " ========".yellow;
     console.log(string);
-    console.log("Passed Tests: " + this.passed);
-    console.log("Failed Tests: " + this.failed);
+    console.log(("Passed Tests: " + this.passed).green);
+    console.log(("Failed Tests: " + this.failed).red);
     if(this.failed > 0) console.log("Failed Tests: " +"\n");
     for(var i = 0; i < this.failedTests.length; i++) {
-        console.log(" Test: " + this.failedTests[i].test);
-        console.log(" Message: " + this.failedTests[i].message);
-        console.log(" Stack trace: " + this.failedTests[i].stack + "\n");
+        console.log(" Test: ".yellow + this.failedTests[i].test);
+        console.log(" Message: ".yellow + this.failedTests[i].message);
+        console.log(" Stack trace: ".yellow  + this.failedTests[i].stack + "\n");
     }
     // I just want things to look pretty :)
-    console.log(string.replace(/\D/g,"=").replace(/\d/g,"=") +"\n");
+    console.log((string.replace(/\D/g,"=").replace(/\d/g,"=") +"\n").yellow);
 };

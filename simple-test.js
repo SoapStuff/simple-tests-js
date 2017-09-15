@@ -1,3 +1,4 @@
+var colors = require("colors");
 module.exports.runTests = function(folder) {
     var path = require("path").join(__dirname, folder);
     var testRunner = require("./testRunner");
@@ -5,9 +6,8 @@ module.exports.runTests = function(folder) {
         //TODO add Tests suffix requirement?
         require("." + folder + '/' + file);
     });
-    console.log("======== TEST RESULTS ========");
-    console.log("Passed Tests: " + testRunner.getPassed());
-    console.log("Failed Tests: " + testRunner.getFailed());
-    console.log("==============================");
+    console.log("======== ".yellow + "TEST RESULTS".underline.white +  " ========".yellow);
+    console.log(("Passed Tests: " + testRunner.getPassed()).green);
+    console.log(("Failed Tests: " + testRunner.getFailed()).red);
+    console.log("==============================".yellow);
 };
-module.exports.runTests("/SampleTests");
