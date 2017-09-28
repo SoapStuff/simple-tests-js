@@ -1,7 +1,7 @@
 {
   "name": "simple-tests-js",
-  "version": "1.0.0",
-  "description": "A Small simple testing frameWork to seperate your tests into different files, and a small wrapper around the Assert framework.",
+  "version": "1.0.2",
+  "description": "A Small simple testing frameWork to seperate your tests into different files.",
   "main": "simple-test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

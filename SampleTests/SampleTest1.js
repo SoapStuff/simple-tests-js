@@ -1,5 +1,5 @@
 const Assert = require("assert");
-require("../testRunner").run({
+require("../util/testRunner").run({
     test1: function () {
 
     },

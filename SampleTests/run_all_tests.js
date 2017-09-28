@@ -1,1 +1,1 @@
-require("../simple-test").runTests("/SampleTests");
+require("../simple-test").runTests(__dirname);
