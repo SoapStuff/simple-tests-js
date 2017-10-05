@@ -1,3 +1,5 @@
+const logger = require("colours-logger");
+
 var passed = 0;
 var failed = 0;
 var failedTests = [];
@@ -121,16 +123,16 @@ TestRunner.prototype.succeedTest = function() {
  * Prints the results of all the tests.
  */
 TestRunner.prototype.printResults = function() {
-    var string = "======== ".yellow + this.file.underline.white + " ========".yellow;
-    console.log(string);
-    console.log(("Passed Tests: " + this.passed).green);
-    console.log(("Failed Tests: " + this.failed).red);
-    if(this.failed > 0) console.log("Failed Tests: " +"\n");
+    var string = "@{yellow}======== @{white,underline}" + this.file+ " @{yellow,!underline}========";
+    logger.log(string);
+    logger.log("@{green}Passed Tests: " + this.passed);
+    logger.log("@{red}Failed Tests: " + this.failed);
+    if(this.failed > 0) logger.log("@{gray}Failed Tests: " +"\n");
     for(var i = 0; i < this.failedTests.length; i++) {
-        console.log(" Test: ".yellow + this.failedTests[i].test);
-        console.log(" Message: ".yellow + this.failedTests[i].message);
-        console.log(" Stack trace: ".yellow  + this.failedTests[i].stack + "\n");
+        logger.log("@{yellow} Test: @{reset}" + this.failedTests[i].test);
+        logger.log("@{yellow} Message: @{reset}" + this.failedTests[i].message);
+        logger.log("@{yellow} Stack trace: @{reset}"  + this.failedTests[i].stack + "\n");
     }
     // I just want things to look pretty :)
-    console.log((string.replace(/\D/g,"=").replace(/\d/g,"=") +"\n").yellow);
+    logger.log("@{yellow}"+(string.replace(/\D/g,"=").replace(/\d/g,"=") +"\n"));
 };
