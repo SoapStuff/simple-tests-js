@@ -1,15 +1,17 @@
-var logger = require("colours-logger");
-var runTests = function(path) {
-    require("fs").readdirSync(path).forEach(function(file) {
-        if(file.indexOf(".js") > - 1) {
+const fs = require("fs");
+const logger = require("colours-logger");
+
+var runTests = function (path) {
+    fs.readdirSync(path).forEach(function (file) {
+        if (file.indexOf(".js") > -1) {
             require(path + '/' + file);
-        } else if(file.indexOf(".") === -1) {
+        } else if (file.indexOf(".") === -1) {
             runTests(path + '/' + file);
         }
     });
 };
 
-module.exports.runTests = function(path) {
+module.exports.runTests = function (path) {
     var testRunner = require("./util/testRunner");
     runTests(path);
     logger.log("@{yellow}========@{underline,white}TEST RESULTS@{yellow,!underline}========");
@@ -23,6 +25,6 @@ module.exports.runTests = function(path) {
  * @param tests - An object with al the tests.
  * @param file - The file the tests is run from.
  */
-module.exports.run = function(tests,file) {
-    require("./util/testRunner").run(tests,file)
+module.exports.run = function (tests, file) {
+    require("./util/testRunner").run(tests, file);
 };

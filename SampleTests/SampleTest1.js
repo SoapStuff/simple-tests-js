@@ -7,9 +7,9 @@ require("../util/testRunner").run({
 
     },
     test3: {
-        test: function() {
-            Assert.equal(arguments[0]+arguments[1],arguments[2])
+        test: function () {
+            Assert.equal(arguments[0] + arguments[1], arguments[2])
         },
-        parameters: [[1,2,3],[2,3,5],[2,3,6]]
+        parameters: [[1, 2, 3], [2, 3, 5], [2, 3, 6]]
     }
-},"SampleTest1");
+}, "SampleTest1");

@@ -1,15 +1,25 @@
 const Assert = require("assert");
+var answer = 0;
+var list = [];
 require("../../util/testRunner").run({
-    test1: function () {
-
-    },
-    test2: function () {
-
-    },
-    test3: {
-        test: function() {
-            Assert.equal(arguments[0]+arguments[1],arguments[2])
+        init: function () {
+            answer = 1;
         },
-        parameters: [[1,2,3],[2,3,5],[2,3,6]]
-    }
-},"SampleTest3");
+        beforeEach: function() {
+            list = [];
+        },
+        afterEach: function() {
+            console.log("test succeeded");
+        },
+        finished: function() {
+            answer = 0;
+        },
+        test1: function () {
+            list.push(1);
+            Assert.equal(answer,list.length);
+        },
+        test2: function () {
+            list.push(1);
+            Assert.equal(answer,list.length);
+        }
+    },"SampleTest3");

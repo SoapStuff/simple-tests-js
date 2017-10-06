@@ -4,4 +4,4 @@ require("../util/testRunner").run({
     test4: function () {
         throw new Error("Fail")
     }
-},"SampleTest2");
+}, "SampleTest2");
