@@ -57,7 +57,7 @@ TestRunner.prototype.constructor = TestRunner;
  */
 function reserved(key) {
     var reserved = {
-        init : true,
+        init: true,
         beforeEach: true,
         afterEach: true,
         finished: true
@@ -173,5 +173,5 @@ TestRunner.prototype.printResults = function () {
         logger.log("@{yellow} Stack trace: @{reset}" + this.failedTests[i].stack + "\n");
     }
     // I just want things to look pretty :)
-    logger.log("@{yellow}" + (string.replace(/\D/g, "=").replace(/\d/g, "=") + "\n"));
+    logger.log("@{yellow}=========" + (this.file.replace(/\D/g, "=").replace(/\d/g, "=") + "=========\n"));
 };

@@ -3,9 +3,10 @@ const logger = require("colours-logger");
 
 var runTests = function (path) {
     fs.readdirSync(path).forEach(function (file) {
-        if (file.indexOf(".js") > -1) {
+        var stat = fs.statSync(path + '/' + file);
+        if (stat.isFile()) {
             require(path + '/' + file);
-        } else if (file.indexOf(".") === -1) {
+        } else if (stat.isDirectory()) {
             runTests(path + '/' + file);
         }
     });
@@ -14,7 +15,7 @@ var runTests = function (path) {
 module.exports.runTests = function (path) {
     var testRunner = require("./util/testRunner");
     runTests(path);
-    logger.log("@{yellow}========@{underline,white}TEST RESULTS@{yellow,!underline}========");
+    logger.log("@{yellow}======== @{underline,white}TEST RESULTS @{yellow,!underline}========");
     logger.log("@{green}Passed Tests: " + testRunner.getPassed());
     logger.log("@{red}Failed Tests: " + testRunner.getFailed());
     logger.log("@{yellow}==============================");

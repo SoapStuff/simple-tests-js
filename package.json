@@ -1,6 +1,6 @@
 {
   "name": "simple-tests-js",
-  "version": "1.0.4",
+  "version": "1.1.1",
   "description": "A Small simple testing frameWork to seperate your tests into different files.",
   "main": "simple-test.js",
   "scripts": {
