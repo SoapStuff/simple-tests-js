@@ -4,11 +4,19 @@
   "description": "A Small simple testing frameWork to seperate your tests into different files.",
   "main": "simple-test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node SampleTests/run_all_tests.js"
   },
   "author": "Arjan Seijs",
   "license": "ISC",
   "dependencies": {
     "colours-logger": "^1.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoapStuff/simple-tests-js"
+  },
+  "bugs": {
+    "url": "https://github.com/SoapStuff/simple-tests-js/issues"
+  },
+  "homepage": "https://github.com/SoapStuff/simple-tests-js#readme"
 }
